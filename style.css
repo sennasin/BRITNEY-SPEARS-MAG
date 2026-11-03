@@ -10,19 +10,25 @@ body {
 
 /* FIGMA MAGAZINE COVER */
 
+
+/* Magazine cover container */
 .cover {
   position: relative;
-  width: 400px;
-  max-width: 90%;
-  margin: 50px auto;
+  width: 500px;
+  max-width: 90vw;
+  margin: 40px auto;
+  padding: 0;
+  background: transparent;
+  box-sizing: border-box;
 }
 
-/* COVER IMAGE */
-
+/* Figma cover fills container */
 .cover-image {
   display: block;
   width: 100%;
   height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 /* CLICKABLE CITY NAMES */

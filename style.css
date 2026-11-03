@@ -27,15 +27,75 @@ body {
 
 /* CLICKABLE CITY NAMES */
 
+
 .locations {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  padding: 15px 5px;
-  background-color: #ffff00;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
+
+.locations .city {
+  position: absolute;
+  display: block;
+  width: 36%;
+  height: 6%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: transparent;
+  font-family: Georgia, serif;
+  font-size: clamp(12px, 3vw, 22px);
+  font-weight: normal;
+  white-space: nowrap;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Positions based on your Figma cover */
+
+.locations .city:nth-child(1) {
+  top: 12%;
+  left: 13%;
+}
+
+.locations .city:nth-child(2) {
+  top: 16%;
+  left: 72%;
+}
+
+.locations .city:nth-child(3) {
+  top: 12%;
+  left: 58%;
+}
+
+.locations .city:nth-child(4) {
+  top: 7%;
+  left: 4%;
+}
+
+.locations .city:nth-child(5) {
+  top: 34%;
+  left: 4%;
+}
+
+.locations .city:nth-child(6) {
+  top: 38%;
+  left: 8%;
+}
+
+/* Flash only on hover */
+
+.locations .city:hover {
+  animation: paparazzi 0.8s infinite;
+}
+
+@keyframes paparazzi {
+  0% { color: #2441ff; }
+  50% { color: #ff1493; }
+  100% { color: white; }
+}
+
 
 /* BLUE CITY BUTTONS */
 

@@ -16,3 +16,26 @@ body {
   font-size: 20px;
   cursor: pointer;
 }
+/* Paparazzi-inspired hover effect */
+.city:hover {
+  animation: paparazzi 0.8s infinite;
+}
+
+@keyframes paparazzi {
+  0% {
+    color: #2441ff;
+  }
+  50% {
+    color: #ff1493;
+  }
+  100% {
+    color: white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .city:hover {
+    animation: none;
+    color: #ff1493;
+  }
+}

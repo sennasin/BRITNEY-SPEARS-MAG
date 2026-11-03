@@ -1,1 +1,9 @@
-
+.cover {
+  background-color: #ffff00;
+  width: 400px;
+  max-width: 90%;
+  min-height: 550px;
+  margin: 50px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}

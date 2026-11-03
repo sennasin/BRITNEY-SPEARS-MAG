@@ -154,3 +154,7 @@ body {
   padding: 20px;
   box-sizing: border-box;
 }
+.cover {
+  background-image: url("Frame%201.png") !important;
+  background-color: hotpink !important;
+}

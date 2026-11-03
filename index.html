@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>It's Britney Bitch Tour</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
 
+<body>
+
+  <main class="website">
+
+    <section class="cover" id="cover">
+      <h1>It's Britney Bitch Tour</h1>
+
+      <div class="locations">
+        <button class="city" onclick="openPage(0)">CHICAGO!</button>
+        <button class="city" onclick="openPage(0)">BOSTON!</button>
+        <button class="city" onclick="openPage(1)">NEW YORK!</button>
+        <button class="city" onclick="openPage(1)">LAS VEGAS!</button>
+        <button class="city" onclick="openPage(2)">SAN FRANCISCO!</button>
+        <button class="city" onclick="openPage(2)">LOS ANGELES!</button>
+      </div>
+
+      <button class="open-button" onclick="openPage(0)">
+        OPEN MAGAZINE →
+      </button>
+    </section>
+
+    <section class="magazine" id="magazine" hidden>
+
+      <div class="spread" id="spread">
+        <!-- Magazine pages will appear here -->
+      </div>
+
+      <nav class="controls">
+        <button onclick="previousPage()">← PREVIOUS</button>
+        <button onclick="backToCover()">COVER</button>
+        <button onclick="nextPage()">NEXT →</button>
+      </nav>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

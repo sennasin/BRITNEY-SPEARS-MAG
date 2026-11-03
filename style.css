@@ -1,6 +1,12 @@
+
+/* 1. Black background for the website */
 body {
   background-color: black;
+  margin: 0;
+  padding: 0;
 }
+
+/* 2. Neon yellow magazine cover */
 .cover {
   background-color: #ffff00;
   width: 400px;
@@ -10,14 +16,27 @@ body {
   padding: 20px;
   box-sizing: border-box;
 }
+
+/* 3. Magazine title */
+.cover h1 {
+  color: black;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+/* 4. Electric blue city names */
 .city {
   color: #2441ff;
   background: transparent;
   border: none;
   font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
+  padding: 5px;
 }
-/* Paparazzi-inspired hover effect */
+
+/* 5. Paparazzi flashing effect */
 .city:hover {
   animation: paparazzi 0.8s infinite;
 }
@@ -26,19 +45,70 @@ body {
   0% {
     color: #2441ff;
   }
+
   50% {
     color: #ff1493;
   }
+
   100% {
     color: white;
   }
 }
 
+/* 6. Open magazine button */
+.open-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* 7. Magazine pages */
+.magazine {
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.spread {
+  display: flex;
+  justify-content: center;
+  background-color: #ffff00;
+  min-height: 550px;
+}
+
+/* 8. Navigation buttons */
+.controls {
+  margin-top: 20px;
+}
+
+.controls button {
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* 9. Keep magazine readable on small screens */
+@media (max-width: 600px) {
+  .cover {
+    width: 90%;
+  }
+
+  .city {
+    font-size: 16px;
+  }
+
+  .spread {
+    min-height: 400px;
+  }
+}
+
+/* 10. Accessibility: reduce flashing if requested */
 @media (prefers-reduced-motion: reduce) {
   .city:hover {
     animation: none;
     color: #ff1493;
   }
-.city:hover {
-  color: hotpink;
 }

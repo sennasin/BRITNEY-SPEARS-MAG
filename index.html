@@ -1,20 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>It's Britney Bitch Tour</title>
-<link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
   <script src="script.js" defer></script>
 </head>
 
 <body>
-
   <main class="website">
 
+    <!-- MAGAZINE COVER -->
     <section class="cover" id="cover">
-      <h1>It's Britney Bitch Tour</h1>
 
+      <!-- Your Figma cover -->
+      <img
+        src="Frame%201.png"
+        alt="Britney Spears magazine cover"
+        class="cover-image"
+      >
+
+      <!-- Clickable city names -->
       <div class="locations">
         <button class="city" onclick="openPage(0)">CHICAGO!</button>
         <button class="city" onclick="openPage(0)">BOSTON!</button>
@@ -27,13 +35,13 @@
       <button class="open-button" onclick="openPage(0)">
         OPEN MAGAZINE →
       </button>
+
     </section>
 
+    <!-- MAGAZINE SPREADS -->
     <section class="magazine" id="magazine" hidden>
 
-      <div class="spread" id="spread">
-        <!-- Magazine pages will appear here -->
-      </div>
+      <div class="spread" id="spread"></div>
 
       <nav class="controls">
         <button onclick="previousPage()">← PREVIOUS</button>
@@ -44,6 +52,5 @@
     </section>
 
   </main>
-
 </body>
 </html>

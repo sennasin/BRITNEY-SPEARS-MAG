@@ -73,8 +73,8 @@ body {
 }
 
 .spread {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background-color: #ffff00;
   min-height: 550px;
 }
@@ -112,15 +112,7 @@ body {
     color: #ff1493;
   }
 
-/* Two-page magazine layout */
-.spread {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  width: 100%;
-  min-height: 550px;
-  background-color: #ffff00;
-}
+
 
 /* Each city gets its own page */
 .stop {

@@ -140,3 +140,17 @@ body {
   color: black;
   margin-bottom: 20px;
 }
+
+.cover {
+  background-image: url("Frame%201.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 400px;
+  max-width: 90%;
+  min-height: 550px;
+  margin: 50px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}

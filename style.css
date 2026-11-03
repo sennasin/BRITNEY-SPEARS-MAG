@@ -1,42 +1,56 @@
 
-/* 1. Black background for the website */
+/* WEBSITE BACKGROUND */
+
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
+  background-color: black;
+  font-family: Arial, sans-serif;
 }
 
-/* 2. Neon yellow magazine cover */
+/* FIGMA MAGAZINE COVER */
+
 .cover {
-  background-color: #ffff00;
+  position: relative;
   width: 400px;
   max-width: 90%;
-  min-height: 550px;
   margin: 50px auto;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
-/* 3. Magazine title */
-.cover h1 {
-  color: black;
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 1.1;
+/* COVER IMAGE */
+
+.cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* 4. Electric blue city names */
+/* CLICKABLE CITY NAMES */
+
+.locations {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 5px;
+  background-color: #ffff00;
+}
+
+/* BLUE CITY BUTTONS */
+
 .city {
   color: #2441ff;
   background: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   padding: 5px;
 }
 
-/* 5. Paparazzi flashing effect */
+/* PAPARAZZI FLASHING EFFECT */
+
 .city:hover {
   animation: paparazzi 0.8s infinite;
 }
@@ -55,22 +69,29 @@ body {
   }
 }
 
-/* 6. Open magazine button */
+/* OPEN MAGAZINE BUTTON */
+
 .open-button {
+  display: block;
+  width: 100%;
   background-color: white;
   color: black;
   border: none;
-  padding: 10px 15px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
 }
 
-/* 7. Magazine pages */
+/* MAGAZINE CONTAINER */
+
 .magazine {
   max-width: 900px;
   margin: 50px auto;
   text-align: center;
 }
+
+/* TWO-PAGE MAGAZINE */
 
 .spread {
   display: grid;
@@ -79,7 +100,37 @@ body {
   min-height: 550px;
 }
 
-/* 8. Navigation buttons */
+/* INDIVIDUAL PAGES */
+
+.stop {
+  padding: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.stop:first-child {
+  border-right: 2px solid black;
+}
+
+/* CITY HEADLINES */
+
+.stop h2 {
+  color: #2441ff;
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+/* TOUR DETAILS */
+
+.date,
+.venue {
+  color: black;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* NAVIGATION */
+
 .controls {
   margin-top: 20px;
 }
@@ -90,71 +141,32 @@ body {
   cursor: pointer;
 }
 
-/* 9. Keep magazine readable on small screens */
+/* MOBILE LAYOUT */
+
 @media (max-width: 600px) {
-  .cover {
-    width: 90%;
-  }
-
   .city {
-    font-size: 16px;
+    font-size: 14px;
   }
 
-  .spread {
-    min-height: 400px;
+  .stop {
+    padding: 15px;
+  }
+
+  .stop h2 {
+    font-size: 24px;
+  }
+
+  .date,
+  .venue {
+    font-size: 16px;
   }
 }
 
-/* 10. Accessibility: reduce flashing if requested */
+/* ACCESSIBILITY */
+
 @media (prefers-reduced-motion: reduce) {
   .city:hover {
     animation: none;
     color: #ff1493;
   }
-
-
-
-/* Each city gets its own page */
-.stop {
-  padding: 40px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-/* Magazine divider */
-.stop:first-child {
-  border-right: 2px solid black;
-}
-
-/* Bigger city headlines */
-.stop h2 {
-  font-size: 38px;
-  color: #2441ff;
-  margin-bottom: 30px;
-}
-
-/* Dates and venues */
-.date,
-.venue {
-  font-size: 20px;
-  color: black;
-  margin-bottom: 20px;
-}
-
-.cover {
-  background-image: url("Frame%201.png");
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  width: 400px;
-  max-width: 90%;
-  min-height: 550px;
-  margin: 50px auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-.cover {
-  background-image: url("Frame%201.png") !important;
-  background-color: hotpink !important;
 }

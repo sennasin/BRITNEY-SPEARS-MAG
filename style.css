@@ -111,4 +111,40 @@ body {
     animation: none;
     color: #ff1493;
   }
+
+/* Two-page magazine layout */
+.spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  min-height: 550px;
+  background-color: #ffff00;
+}
+
+/* Each city gets its own page */
+.stop {
+  padding: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Magazine divider */
+.stop:first-child {
+  border-right: 2px solid black;
+}
+
+/* Bigger city headlines */
+.stop h2 {
+  font-size: 38px;
+  color: #2441ff;
+  margin-bottom: 30px;
+}
+
+/* Dates and venues */
+.date,
+.venue {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 20px;
 }

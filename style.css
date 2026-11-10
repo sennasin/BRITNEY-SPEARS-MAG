@@ -9,14 +9,16 @@
 body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 
 /* ---------- ERA SYSTEM ----------
-   RULE 1: every city uses the same layout. Its era only sets these four variables.
+   RULE 1: every city uses the same layout and the same typeface (Bacasime Antique).
+   Its era sets only a color and the color it flashes to on hover.
    A new city needs one data-era value, nothing else. */
-[data-era="baby"]     { --font: "Playfair Display", serif; --color: #2441ff; --scale: 1; }
-[data-era="oops"]     { --font: "Pacifico", cursive;       --color: #ff1493; --scale: .95; }
-[data-era="toxic"]    { --font: "Orbitron", sans-serif;    --color: #7a00ff; --scale: .72; }
-[data-era="circus"]   { --font: "Abril Fatface", serif;    --color: #e60026; --scale: 1; }
-[data-era="blackout"] { --font: "Anton", sans-serif;       --color: #000;    --scale: 1.1; }
-[data-era="gimme"]    { --font: "Bungee", sans-serif;      --color: #ff6a00; --scale: .75; }
+:root { --font: "Bacasime Antique", serif; }
+[data-era="baby"]     { --color: #2441ff; }
+[data-era="oops"]     { --color: #ff1493; --flash: #2441ff; }   /* pink name flashes blue */
+[data-era="toxic"]    { --color: #7a00ff; }
+[data-era="circus"]   { --color: #e60026; }
+[data-era="blackout"] { --color: #000;    }
+[data-era="gimme"]    { --color: #ff6a00; }
 
 /* ---------- POSTER ---------- */
 .cover { margin: 24px auto; width: min(94vw, 640px); }
@@ -37,8 +39,12 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 .s1 { top: 30%; left: 5%;  background-image: url("assets/star1.png"); }
 .s2 { top: 25%; right: 3%; background-image: url("assets/star2.png"); }
 .s3 { bottom: 17%; right: 3%; background-image: url("assets/star3.png"); }
-.guest { width: 25%; aspect-ratio: 1; border-radius: 50%; top: 52%; right: 6%; border: .8cqw solid var(--pink); background-image: url("assets/guest.png"); }
-.guest-label { position: absolute; top: 49%; right: 4%; margin: 0; transform: rotate(8deg); font: 400 4.4cqw "Abril Fatface", serif; color: var(--pink); }
+/* Special Guest: round photo, text curved around it, signature photo on top */
+.guest { position: absolute; width: 28%; aspect-ratio: 1; top: 50%; right: 2%; }
+.guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: #ff7ab8 center / cover no-repeat url("assets/guest.png"); }
+.guest svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.guest text { font: 400 14px "Abril Fatface", serif; fill: var(--pink); }
+.signature { position: absolute; left: 10%; bottom: -8%; width: 78%; }
 
 /* Title ellipse */
 .title {
@@ -47,11 +53,11 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   transform: rotate(-6deg); line-height: .85;
 }
-.title span { font: italic 700 8cqw "Playfair Display", serif; }
-.title b { font: 400 13cqw "Anton", sans-serif; letter-spacing: .01em; transform: rotate(-3deg); }
+.title span { font: 400 12cqw "Luxurious Script", cursive; line-height: .9; }
+.title b { font: 400 12cqw "BBH Hegarty", sans-serif; transform: rotate(-3deg); }
 
-.barcode { position: absolute; right: 9%; bottom: 7%; width: 16%; text-align: center; font: 700 2cqw monospace; letter-spacing: .3em; }
-.barcode i { display: block; height: 7cqw; background: repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 4px, #000 4px 5px, transparent 5px 8px); }
+/* Barcode is type, not an image: Libre Barcode 128 Text draws the bars and the caption */
+.barcode { position: absolute; right: 9%; bottom: 7%; font: 400 10cqw "Libre Barcode 128 Text", cursive; line-height: 1; white-space: nowrap; color: #000; }
 
 /* ---------- CITY NAMES ----------
    RULE 2: names stack in one column and zigzag left/right by odd/even.
@@ -65,7 +71,7 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
   margin-top: -2cqw;                               /* the overlap */
   padding: 0; border: 0; background: none;
   font-family: var(--font);
-  font-size: calc(10cqw * var(--scale));
+  font-size: 10cqw;
   line-height: .9;
   color: var(--color);
   white-space: nowrap;
@@ -86,7 +92,7 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 /* RULE 4: hover = camera flash. The name cycles from its era color to pink and back
    every 0.8s (about 1.25 flashes per second). */
 .city:hover, .city:focus-visible { animation: paparazzi .8s infinite; }
-@keyframes paparazzi { 0%, 100% { color: var(--color); } 50% { color: var(--pink); } }
+@keyframes paparazzi { 0%, 100% { color: var(--color); } 50% { color: var(--flash, var(--pink)); } }
 .city:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
 /* ---------- SPREADS ----------
@@ -95,7 +101,7 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 .spread { display: grid; grid-template-columns: 1fr 1fr; background: var(--yellow); min-height: 70vh; }
 .stop { padding: 6vw 3vw; box-sizing: border-box; }
 .stop:first-child { border-right: 2px solid #000; }
-.stop h2 { margin: 0 0 4vw; font-family: var(--font); font-weight: normal; color: var(--color); font-size: calc(clamp(24px, 5vw, 48px) * var(--scale)); line-height: 1; }
+.stop h2 { margin: 0 0 4vw; font-family: var(--font); font-weight: normal; color: var(--color); font-size: calc(clamp(24px, 5vw, 48px)); line-height: 1; }
 .date, .venue { margin: 0 0 16px; color: #000; font-size: clamp(16px, 2vw, 22px); }
 .controls { margin-top: 20px; }
 .controls button { padding: 10px 15px; margin: 5px; cursor: pointer; }
@@ -107,5 +113,5 @@ body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 
 /* ---------- ACCESSIBILITY ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .city:hover, .city:focus-visible { animation: none; color: var(--pink); }
+  .city:hover, .city:focus-visible { animation: none; color: var(--flash, var(--pink)); }
 }

@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>It's Britney Bitch Tour</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Asset&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -20,18 +21,21 @@
     <section class="cover" id="cover">
       <div class="poster">
         <div class="layer hero" role="img" aria-label="Britney with a pink teddy bear"></div>
-        <div class="layer star s1"></div>
-        <div class="layer star s2"></div>
-        <div class="layer star s3"></div>
-        <div class="layer star s4"></div>
+
+        <!-- Stars: tries the lowercase file first, then falls back to your original file name -->
+        <img class="layer star s1" src="star1.png" alt="" onerror="this.onerror=null;this.src='Star 1.png'">
+        <img class="layer star s2" src="star2.png" alt="" onerror="this.onerror=null;this.src='Star 2.png'">
+        <img class="layer star s3" src="star3.png" alt="" onerror="this.onerror=null;this.src='Star 3.png'">
+        <img class="layer star s4" src="star4.png" alt="" onerror="this.onerror=null;this.src='Star 4.png'">
 
         <div class="guest">
           <div class="guest-photo"></div>
           <svg viewBox="0 0 100 100" aria-label="Special Guest!">
-  <path id="guest-arc" d="M50 86 A36 36 0 1 1 50 14 A36 36 0 1 1 50 86" fill="none"/>
-  <text><textPath href="#guest-arc" startOffset="50%" text-anchor="middle">Special Guest!</textPath></text>
+            <path id="guest-arc" d="M50 86 A36 36 0 1 1 50 14 A36 36 0 1 1 50 86" fill="none"/>
+            <text><textPath href="#guest-arc" startOffset="50%" text-anchor="middle">Special Guest!</textPath></text>
           </svg>
-<img class="signature" src="signature.png" alt="">        </div>
+          <img class="signature" src="signature.png" alt="">
+        </div>
 
         <h1 class="title"><span>It's Britney</span><b>BITCH!</b><span>Tour</span></h1>
         <div class="barcode" role="img" aria-label="Barcode reading BITCH!">BITCH!</div>

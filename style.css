@@ -13,14 +13,11 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 .layer { position: absolute; }
 .hero { inset: 4.9% 8.2% 5.2% 8.1%; background: #f4f4f4 center top / cover no-repeat url("hero.png"); }
 
-
 .star { background: no-repeat center / contain; z-index: 1; }
-.s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("star1.png"); }
-.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("star2.png"); }
-.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("star3.png"); }
-.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("star4.png"); }
-
-.signature { position: absolute; left: 23%; top: 64%; width: 45%; }
+.s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("Star%201.png"); }
+.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("Star%202.png"); }
+.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("Star%203.png"); }
+.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("Star%204.png"); }
 
 .guest { position: absolute; width: 38%; aspect-ratio: 1; top: 34%; left: 62%; z-index: 2; }
 .guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: center / contain no-repeat url("guest.png"); }
@@ -41,9 +38,9 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 .title span, .title b { display: block; transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)); letter-spacing: var(--ls, 0); }
 
 .title span { font: 400 14.5cqw "Luxurious Script", cursive; line-height: .8; }
-.title span:first-child { --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }            
-.title b { font: 400 16cqw "BBH Hegarty", sans-serif; line-height: .8; margin: -1.5cqw 0; --x: 0cqw; --y: 0cqw; --r: -3deg; --ls: 0; }  
-.title span:last-child { font-size: 11cqw; --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }  
+.title span:first-child { --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }
+.title b { font: 400 16cqw "BBH Hegarty", sans-serif; line-height: .8; margin: -1.5cqw 0; --x: 0cqw; --y: 0cqw; --r: -3deg; --ls: 0; }
+.title span:last-child { font-size: 11cqw; --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }
 
 .barcode { position: absolute; right: 9.5%; bottom: 6%; font: 400 7cqw "Libre Barcode 128 Text", cursive; line-height: 1; white-space: nowrap; color: #000; }
 

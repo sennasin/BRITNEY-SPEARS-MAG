@@ -1,256 +1,111 @@
-
-/* WEBSITE BACKGROUND */
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  font-family: Arial, sans-serif;
+/* ---------- TOKENS ---------- */
+:root {
+  --yellow: #ffff58;
+  --blue: #2441ff;
+  --pink: #ff1493;
+  --ink: #000;
 }
 
-/* FIGMA MAGAZINE COVER */
+body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 
+/* ---------- ERA SYSTEM ----------
+   RULE 1: every city uses the same layout. Its era only sets these four variables.
+   A new city needs one data-era value, nothing else. */
+[data-era="baby"]     { --font: "Playfair Display", serif; --color: #2441ff; --scale: 1; }
+[data-era="oops"]     { --font: "Pacifico", cursive;       --color: #ff1493; --scale: .95; }
+[data-era="toxic"]    { --font: "Orbitron", sans-serif;    --color: #7a00ff; --scale: .72; }
+[data-era="circus"]   { --font: "Abril Fatface", serif;    --color: #e60026; --scale: 1; }
+[data-era="blackout"] { --font: "Anton", sans-serif;       --color: #000;    --scale: 1.1; }
+[data-era="gimme"]    { --font: "Bungee", sans-serif;      --color: #ff6a00; --scale: .75; }
 
-/* Magazine cover container */
-.cover {
+/* ---------- POSTER ---------- */
+.cover { margin: 24px auto; width: min(94vw, 640px); }
+
+.poster {
   position: relative;
-  width: 500px;
-  max-width: 90vw;
-  margin: 40px auto;
-  padding: 0;
-  background: transparent;
-  box-sizing: border-box;
+  aspect-ratio: 5 / 7;
+  background: var(--yellow);
+  container-type: inline-size;   /* lets type scale with the poster: 1cqw = 1% of its width */
+  overflow: hidden;
 }
 
-/* Figma cover fills container */
-.cover-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0;
-  padding: 0;
+/* Image layers. Drop your exported PNGs in /assets with these names.
+   The pink fallback color shows until the files exist. */
+.layer { position: absolute; background: #ff7ab8 center / cover no-repeat; }
+.hero  { inset: 5.5% 8% 6% 8%; background-color: #f4f4f4; background-image: url("assets/hero.png"); background-size: contain; background-position: bottom center; }
+.star  { width: 26%; aspect-ratio: 1; clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.s1 { top: 30%; left: 5%;  background-image: url("assets/star1.png"); }
+.s2 { top: 25%; right: 3%; background-image: url("assets/star2.png"); }
+.s3 { bottom: 17%; right: 3%; background-image: url("assets/star3.png"); }
+.guest { width: 25%; aspect-ratio: 1; border-radius: 50%; top: 52%; right: 6%; border: .8cqw solid var(--pink); background-image: url("assets/guest.png"); }
+.guest-label { position: absolute; top: 49%; right: 4%; margin: 0; transform: rotate(8deg); font: 400 4.4cqw "Abril Fatface", serif; color: var(--pink); }
+
+/* Title ellipse */
+.title {
+  position: absolute; left: 4%; bottom: 8%; width: 74%; aspect-ratio: 2 / 1;
+  margin: 0; background: var(--blue); border-radius: 50%; color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transform: rotate(-6deg); line-height: .85;
 }
+.title span { font: italic 700 8cqw "Playfair Display", serif; }
+.title b { font: 400 13cqw "Anton", sans-serif; letter-spacing: .01em; transform: rotate(-3deg); }
 
-/* CLICKABLE CITY NAMES */
+.barcode { position: absolute; right: 9%; bottom: 7%; width: 16%; text-align: center; font: 700 2cqw monospace; letter-spacing: .3em; }
+.barcode i { display: block; height: 7cqw; background: repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 4px, #000 4px 5px, transparent 5px 8px); }
 
+/* ---------- CITY NAMES ----------
+   RULE 2: names stack in one column and zigzag left/right by odd/even.
+   Each name overlaps the one above it (negative margin), so the stack always crowds
+   like paparazzi, however many cities there are. */
+.locations { position: absolute; inset: 4% 3% auto 3%; display: flex; flex-direction: column; pointer-events: none; z-index: 5; }
 
-.locations {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.locations .city {
-  position: absolute;
-  display: block;
-  width: 36%;
-  height: 6%;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: transparent;
-  font-family: Georgia, serif;
-  font-size: clamp(12px, 3vw, 22px);
-  font-weight: normal;
+.city {
+  position: relative;
+  align-self: flex-start;
+  margin-top: -2cqw;                               /* the overlap */
+  padding: 0; border: 0; background: none;
+  font-family: var(--font);
+  font-size: calc(10cqw * var(--scale));
+  line-height: .9;
+  color: var(--color);
   white-space: nowrap;
   cursor: pointer;
   pointer-events: auto;
 }
+.city:nth-child(even) { align-self: flex-end; }
 
-/* Positions based on your Figma cover */
-
-.locations .city:nth-child(1) {
-  top: 12%;
-  left: 13%;
+/* RULE 3: info appears only on interaction. Hover or keyboard focus shows date and venue. */
+.info {
+  position: absolute; top: 100%; left: 0; z-index: 2;
+  padding: .6cqw 1.2cqw; background: #fff; color: #000;
+  font: 700 2.4cqw Arial, sans-serif; opacity: 0; pointer-events: none; transition: opacity .15s;
 }
+.city:nth-child(even) .info { left: auto; right: 0; }
+.city:hover .info, .city:focus-visible .info { opacity: 1; }
 
-.locations .city:nth-child(2) {
-  top: 16%;
-  left: 72%;
-}
+/* RULE 4: hover = camera flash. The name cycles from its era color to pink and back
+   every 0.8s (about 1.25 flashes per second). */
+.city:hover, .city:focus-visible { animation: paparazzi .8s infinite; }
+@keyframes paparazzi { 0%, 100% { color: var(--color); } 50% { color: var(--pink); } }
+.city:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
-.locations .city:nth-child(3) {
-  top: 12%;
-  left: 58%;
-}
-
-.locations .city:nth-child(4) {
-  top: 7%;
-  left: 4%;
-}
-
-.locations .city:nth-child(5) {
-  top: 34%;
-  left: 4%;
-}
-
-.locations .city:nth-child(6) {
-  top: 38%;
-  left: 8%;
-}
-
-/* Flash only on hover */
-
-.locations .city:hover {
-  animation: paparazzi 0.8s infinite;
-}
-
-@keyframes paparazzi {
-  0% { color: #2441ff; }
-  50% { color: #ff1493; }
-  100% { color: white; }
-}
-
-
-/* BLUE CITY BUTTONS */
-
-.city {
-  color: #2441ff;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 5px;
-}
-
-/* PAPARAZZI FLASHING EFFECT */
-
-.city:hover {
-  animation: paparazzi 0.8s infinite;
-}
-
-@keyframes paparazzi {
-  0% {
-    color: #2441ff;
-  }
-
-  50% {
-    color: #ff1493;
-  }
-
-  100% {
-    color: white;
-  }
-}
-
-/* OPEN MAGAZINE BUTTON */
-
-.open-button {
-  display: block;
-  width: 100%;
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* MAGAZINE CONTAINER */
-
-.magazine {
-  max-width: 900px;
-  margin: 50px auto;
-  text-align: center;
-}
-
-/* TWO-PAGE MAGAZINE */
-
-.spread {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #ffff00;
-  min-height: 550px;
-}
-
-/* INDIVIDUAL PAGES */
-
-.stop {
-  padding: 40px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.stop:first-child {
-  border-right: 2px solid black;
-}
-
-/* CITY HEADLINES */
-
-.stop h2 {
-  color: #2441ff;
-  font-size: 38px;
-  margin-bottom: 30px;
-}
-
-/* TOUR DETAILS */
-
-.date,
-.venue {
-  color: black;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-/* NAVIGATION */
-
-.controls {
-  margin-top: 20px;
-}
-
-.controls button {
-  padding: 10px 15px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-/* MOBILE LAYOUT */
+/* ---------- SPREADS ----------
+   Same era variables, same layout: only the type and color change per city. */
+.magazine { max-width: 900px; margin: 40px auto; padding: 0 3vw; text-align: center; }
+.spread { display: grid; grid-template-columns: 1fr 1fr; background: var(--yellow); min-height: 70vh; }
+.stop { padding: 6vw 3vw; box-sizing: border-box; }
+.stop:first-child { border-right: 2px solid #000; }
+.stop h2 { margin: 0 0 4vw; font-family: var(--font); font-weight: normal; color: var(--color); font-size: calc(clamp(24px, 5vw, 48px) * var(--scale)); line-height: 1; }
+.date, .venue { margin: 0 0 16px; color: #000; font-size: clamp(16px, 2vw, 22px); }
+.controls { margin-top: 20px; }
+.controls button { padding: 10px 15px; margin: 5px; cursor: pointer; }
 
 @media (max-width: 600px) {
-  .city {
-    font-size: 14px;
-  }
-
-  .stop {
-    padding: 15px;
-  }
-
-  .stop h2 {
-    font-size: 24px;
-  }
-
-  .date,
-  .venue {
-    font-size: 16px;
-  }
+  .spread { grid-template-columns: 1fr; }
+  .stop:first-child { border-right: 0; border-bottom: 2px solid #000; }
 }
 
-/* ACCESSIBILITY */
-
+/* ---------- ACCESSIBILITY ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .city:hover {
-    animation: none;
-    color: #ff1493;
-  }
-}
-
-/* Keep cover image and buttons aligned */
-
-.cover {
-  position: relative;
-}
-
-.cover-image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Hide the separate button area below the cover */
-
-.open-button {
-  display: none;
+  .city:hover, .city:focus-visible { animation: none; color: var(--pink); }
 }

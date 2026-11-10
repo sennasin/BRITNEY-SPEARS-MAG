@@ -1,117 +1,82 @@
-/* ---------- TOKENS ---------- */
+
 :root {
   --yellow: #ffff58;
   --blue: #2441ff;
   --pink: #ff1493;
-  --ink: #000;
+  --font: "Bacasime Antique", serif;
 }
+body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 
-body { margin: 0; background: var(--ink); font-family: Arial, sans-serif; }
 
-/* ---------- ERA SYSTEM ----------
-   RULE 1: every city uses the same layout and the same typeface (Bacasime Antique).
-   Its era sets only a color and the color it flashes to on hover.
-   A new city needs one data-era value, nothing else. */
-:root { --font: "Bacasime Antique", serif; }
-[data-era="baby"]     { --color: #2441ff; }
-[data-era="oops"]     { --color: #ff1493; --flash: #2441ff; }   /* pink name flashes blue */
-[data-era="toxic"]    { --color: #7a00ff; }
-[data-era="circus"]   { --color: #e60026; }
-[data-era="blackout"] { --color: #000;    }
-[data-era="gimme"]    { --color: #ff6a00; }
-
-/* ---------- POSTER ---------- */
 .cover { margin: 24px auto; width: min(94vw, 640px); }
+.poster { position: relative; aspect-ratio: 1122 / 1540; background: var(--yellow); container-type: inline-size; overflow: hidden; }
 
-.poster {
-  position: relative;
-  aspect-ratio: 5 / 7;
-  background: var(--yellow);
-  container-type: inline-size;   /* lets type scale with the poster: 1cqw = 1% of its width */
-  overflow: hidden;
-}
+.layer { position: absolute; }
+.hero { inset: 4.9% 8.2% 5.2% 8.1%; background: #f4f4f4 center top / cover no-repeat url("assets/hero.png"); }
+.star { background: no-repeat center / contain; }
+.s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("assets/Star_1.png"); }  /* big pink star, left */
+.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("assets/Star_2.png"); }  /* photographers */
+.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("assets/Star_3.png"); }  /* black top, bottom right */
+.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("assets/Star_4.png"); }  /* American dream, top left */
 
-/* Image layers. Drop your exported PNGs in /assets with these names.
-   The pink fallback color shows until the files exist. */
-.layer { position: absolute; background: #ff7ab8 center / cover no-repeat; }
-.hero  { inset: 5.5% 8% 6% 8%; background-color: #f4f4f4; background-image: url("assets/hero.png"); background-size: contain; background-position: bottom center; }
-.star  { width: 26%; aspect-ratio: 1; clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
-.s1 { top: 30%; left: 5%;  background-image: url("assets/star1.png"); }
-.s2 { top: 25%; right: 3%; background-image: url("assets/star2.png"); }
-.s3 { bottom: 17%; right: 3%; background-image: url("assets/star3.png"); }
-/* Special Guest: round photo, text curved around it, signature photo on top */
-.guest { position: absolute; width: 28%; aspect-ratio: 1; top: 50%; right: 2%; }
-.guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: #ff7ab8 center / cover no-repeat url("assets/guest.png"); }
+.guest { position: absolute; width: 38%; aspect-ratio: 1; top: 34%; left: 62%; }
+.guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: center / contain no-repeat url("assets/guest.png"); }
 .guest svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.guest text { font: 400 14px "Abril Fatface", serif; fill: var(--pink); }
-.signature { position: absolute; left: 10%; bottom: -8%; width: 78%; }
+.guest text { font: 400 15px "Abril Fatface", serif; letter-spacing: .5px; fill: var(--pink); }
+.signature { position: absolute; left: 21%; top: 71%; width: 58%; }
 
-/* Title ellipse */
 .title {
-  position: absolute; left: 4%; bottom: 8%; width: 74%; aspect-ratio: 2 / 1;
+  position: absolute; left: 3.5%; bottom: 11%; width: 72%; aspect-ratio: 2 / 1;
   margin: 0; background: var(--blue); border-radius: 50%; color: #fff;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transform: rotate(-6deg); line-height: .85;
+  transform: rotate(-6deg);
 }
-.title span { font: 400 12cqw "Luxurious Script", cursive; line-height: .9; }
-.title b { font: 400 12cqw "BBH Hegarty", sans-serif; transform: rotate(-3deg); }
+.title span { font: 400 14.5cqw "Luxurious Script", cursive; line-height: .8; }
+.title span:last-child { font-size: 11cqw; }
+.title b { font: 400 16cqw "BBH Hegarty", sans-serif; line-height: .8; margin: -1.5cqw 0; transform: rotate(-3deg); }
 
-/* Barcode is type, not an image: Libre Barcode 128 Text draws the bars and the caption */
-.barcode { position: absolute; right: 9%; bottom: 7%; font: 400 10cqw "Libre Barcode 128 Text", cursive; line-height: 1; white-space: nowrap; color: #000; }
+.barcode { position: absolute; right: 9.5%; bottom: 6%; font: 400 7cqw "Libre Barcode 128 Text", cursive; line-height: 1; white-space: nowrap; color: #000; }
 
-/* ---------- CITY NAMES ----------
-   RULE 2: names stack in one column and zigzag left/right by odd/even.
-   Each name overlaps the one above it (negative margin), so the stack always crowds
-   like paparazzi, however many cities there are. */
-.locations { position: absolute; inset: 4% 3% auto 3%; display: flex; flex-direction: column; pointer-events: none; z-index: 5; }
+
+.locations {
+  position: absolute; inset: 3.5% 3% auto 3%; z-index: 5; pointer-events: none;
+  display: grid; grid-template-columns: 1fr 1fr; row-gap: 22cqw;
+}
+.pair { display: flex; flex-direction: column; align-items: flex-start; }
+.pair:nth-child(even) { align-items: flex-end; margin-top: 4cqw; }
 
 .city {
-  position: relative;
-  align-self: flex-start;
-  margin-top: -2cqw;                               /* the overlap */
-  padding: 0; border: 0; background: none;
-  font-family: var(--font);
-  font-size: 10cqw;
-  line-height: .9;
-  color: var(--color);
-  white-space: nowrap;
-  cursor: pointer;
-  pointer-events: auto;
+  position: relative; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
+  font-family: var(--font); color: var(--blue); white-space: nowrap;
+  font-size: 7.5cqw; line-height: .9;
 }
-.city:nth-child(even) { align-self: flex-end; }
+.city:nth-child(2) { font-size: 5.5cqw; margin: -.5cqw 0 0 7cqw; }
+.pair:nth-child(even) .city:nth-child(2) { margin: -.5cqw 0 0; }
 
-/* RULE 3: info appears only on interaction. Hover or keyboard focus shows date and venue. */
 .info {
-  position: absolute; top: 100%; left: 0; z-index: 2;
-  padding: .6cqw 1.2cqw; background: #fff; color: #000;
+  position: absolute; top: 100%; left: 0; z-index: 2; padding: .6cqw 1.2cqw; background: #fff; color: #000;
   font: 700 2.4cqw Arial, sans-serif; opacity: 0; pointer-events: none; transition: opacity .15s;
 }
-.city:nth-child(even) .info { left: auto; right: 0; }
+.pair:nth-child(even) .info { left: auto; right: 0; }
 .city:hover .info, .city:focus-visible .info { opacity: 1; }
 
-/* RULE 4: hover = camera flash. The name cycles from its era color to pink and back
-   every 0.8s (about 1.25 flashes per second). */
 .city:hover, .city:focus-visible { animation: paparazzi .8s infinite; }
-@keyframes paparazzi { 0%, 100% { color: var(--color); } 50% { color: var(--flash, var(--pink)); } }
+@keyframes paparazzi { 0%, 100% { color: var(--blue); } 50% { color: var(--pink); } }
 .city:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
-/* ---------- SPREADS ----------
-   Same era variables, same layout: only the type and color change per city. */
 .magazine { max-width: 900px; margin: 40px auto; padding: 0 3vw; text-align: center; }
 .spread { display: grid; grid-template-columns: 1fr 1fr; background: var(--yellow); min-height: 70vh; }
 .stop { padding: 6vw 3vw; box-sizing: border-box; }
 .stop:first-child { border-right: 2px solid #000; }
-.stop h2 { margin: 0 0 4vw; font-family: var(--font); font-weight: normal; color: var(--color); font-size: calc(clamp(24px, 5vw, 48px)); line-height: 1; }
+.stop h2 { margin: 0 0 4vw; font-family: var(--font); font-weight: normal; color: var(--blue); font-size: clamp(24px, 5vw, 48px); line-height: 1; }
 .date, .venue { margin: 0 0 16px; color: #000; font-size: clamp(16px, 2vw, 22px); }
 .controls { margin-top: 20px; }
 .controls button { padding: 10px 15px; margin: 5px; cursor: pointer; }
-
 @media (max-width: 600px) {
   .spread { grid-template-columns: 1fr; }
   .stop:first-child { border-right: 0; border-bottom: 2px solid #000; }
 }
 
-/* ---------- ACCESSIBILITY ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .city:hover, .city:focus-visible { animation: none; color: var(--flash, var(--pink)); }
+  .city:hover, .city:focus-visible { animation: none; color: var(--pink); }
 }

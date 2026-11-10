@@ -1,7 +1,4 @@
-/* ONE LIST DRIVES EVERYTHING.
-   To add a city: add a line here. The poster, hover info and spreads all update.
-   "era" picks the type/color style (see data-era in style.css).
-   DATES AND VENUES ARE PLACEHOLDERS: replace with yours. */
+
 const cities = [
   { name: "LAS VEGAS",     era: "circus",   date: "MAY 02, 2027", venue: "Zappos Theater" },
   { name: "CHICAGO",       era: "baby",     date: "MAY 06, 2027", venue: "United Center" },
@@ -12,14 +9,17 @@ const cities = [
 ];
 
 let currentPage = 0;
-const PAGE_SIZE = 2; // cities per spread
+const PAGE_SIZE = 2; 
 
-// Poster: one button per city, all styled by the same .city rule
-document.getElementById("locations").innerHTML = cities.map((c, i) => `
-  <button class="city" data-era="${c.era}" onclick="openPage(${Math.floor(i / PAGE_SIZE)})">
-    ${c.name}!
-    <span class="info">${c.date} / ${c.venue}</span>
-  </button>
+const pairs = [];
+for (let i = 0; i < cities.length; i += PAGE_SIZE) pairs.push(cities.slice(i, i + PAGE_SIZE));
+document.getElementById("locations").innerHTML = pairs.map((pair, p) => `
+  <div class="pair">${pair.map(c => `
+    <button class="city" onclick="openPage(${p})">
+      ${c.name}!
+      <span class="info">${c.date} / ${c.venue}</span>
+    </button>`).join("")}
+  </div>
 `).join("");
 
 function openPage(n) {

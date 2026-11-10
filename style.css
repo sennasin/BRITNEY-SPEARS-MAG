@@ -24,9 +24,9 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 .guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: center / contain no-repeat url("guest.png"); }
 .guest svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 
-.guest text { font-family: "Asset", serif; font-weight: 400; font-size: 14px; letter-spacing: .5px; fill: var(--pink); }
+.guest text { font-family: "Asset", serif; font-weight: 400; font-size: 9.5px; letter-spacing: 0; fill: var(--pink); }
 
-.signature { position: absolute; left: 8%; top: 66%; width: 85%; }
+.signature { position: absolute; left: 2%; top: 34%; width: 85%; }
 
 .title {
   position: absolute; left: 3.5%; bottom: 11%; width: 72%; aspect-ratio: 2 / 1;

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>It's Britney Bitch Tour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bungee&family=Orbitron:wght@900&family=Pacifico&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bacasime+Antique&family=BBH+Hegarty&family=Libre+Barcode+128+Text&family=Luxurious+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -19,10 +19,17 @@
         <div class="layer star s1"></div>
         <div class="layer star s2"></div>
         <div class="layer star s3"></div>
-        <div class="layer guest"></div>
-        <p class="guest-label">Special Guest!</p>
+        <div class="guest">
+          <div class="guest-photo"></div>
+          <!-- Live curved text: the arc runs clockwise from 8 o'clock to 4 o'clock around the photo -->
+          <svg viewBox="0 0 100 100" aria-label="Special Guest!">
+            <path id="guest-arc" d="M18.82 68 A36 36 0 1 1 81.18 68" fill="none"/>
+            <text><textPath href="#guest-arc" startOffset="50%" text-anchor="middle" textLength="140" lengthAdjust="spacing">Special Guest!</textPath></text>
+          </svg>
+          <img class="signature" src="assets/signature.png" alt="">
+        </div>
         <h1 class="title"><span>It's Britney</span><b>BITCH!</b><span>Tour</span></h1>
-        <div class="barcode" aria-hidden="true"><i></i><span>BITCH!</span></div>
+        <div class="barcode" role="img" aria-label="Barcode reading BITCH!">BITCH!</div>
         <div class="locations" id="locations"></div>
       </div>
     </section>

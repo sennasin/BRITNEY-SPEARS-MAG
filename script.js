@@ -1,4 +1,7 @@
-
+/* ONE LIST DRIVES EVERYTHING.
+   To add a city: add a line here. The poster, hover info and spreads all update.
+   "era" picks the type/color style (see data-era in style.css).
+   DATES AND VENUES ARE PLACEHOLDERS: replace with yours. */
 const cities = [
   { name: "LAS VEGAS",     era: "circus",   date: "MAY 02, 2027", venue: "Zappos Theater" },
   { name: "CHICAGO",       era: "baby",     date: "MAY 06, 2027", venue: "United Center" },

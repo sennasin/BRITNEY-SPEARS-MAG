@@ -15,10 +15,10 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 
 
 .star { background: no-repeat center / contain; z-index: 1; }
-.s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("Star_1.png"); }  
-.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("Star_2.png"); }  
-.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("Star_3.png"); } 
-.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("Star_4.png"); } 
+.s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("Star%201.png"); }
+.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("Star%202.png"); }
+.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("Star%203.png"); }
+.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("Star%204.png"); }
 
 .guest { position: absolute; width: 38%; aspect-ratio: 1; top: 34%; left: 62%; z-index: 2; }
 .guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: center / contain no-repeat url("guest.png"); }

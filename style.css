@@ -3,7 +3,6 @@
   --blue: #2441ff;
   --pink: #ff1493;
   --font: "Bacasime Antique", serif;
-  --guest-font: "Poppins", sans-serif;
 }
 body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 
@@ -17,14 +16,15 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 
 .star { background: no-repeat center / contain; z-index: 1; }
 .s1 { width: 31%; aspect-ratio: 379 / 376; left: 6.5%; top: 41.5%; background-image: url("Star_1.png"); }  
-.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("Star_2.png"); } 
-.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("Star_3.png"); }  
-.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("Star_4.png"); }  
+.s2 { width: 19%; aspect-ratio: 225 / 229;  left: 79%;  top: 21.5%; background-image: url("Star_2.png"); }  
+.s3 { width: 23%; aspect-ratio: 278 / 285;  left: 76%;  top: 66.5%; background-image: url("Star_3.png"); } 
+.s4 { width: 20%; aspect-ratio: 249 / 220;  left: 7%;   top: 15%;   background-image: url("Star_4.png"); } 
 
 .guest { position: absolute; width: 38%; aspect-ratio: 1; top: 34%; left: 62%; z-index: 2; }
 .guest-photo { position: absolute; inset: 14%; border-radius: 50%; background: center / contain no-repeat url("guest.png"); }
 .guest svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.guest text { font-family: var(--guest-font); font-weight: 800; font-style: italic; font-size: 15px; letter-spacing: .5px; fill: var(--pink); }
+
+.guest text { font-family: "Asset", serif; font-weight: 400; font-size: 14px; letter-spacing: .5px; fill: var(--pink); }
 
 .signature { position: absolute; left: 8%; top: 66%; width: 85%; }
 
@@ -39,7 +39,7 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 .title span, .title b { display: block; transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)); letter-spacing: var(--ls, 0); }
 
 .title span { font: 400 14.5cqw "Luxurious Script", cursive; line-height: .8; }
-.title span:first-child { --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }           
+.title span:first-child { --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }            
 .title b { font: 400 16cqw "BBH Hegarty", sans-serif; line-height: .8; margin: -1.5cqw 0; --x: 0cqw; --y: 0cqw; --r: -3deg; --ls: 0; }  
 .title span:last-child { font-size: 11cqw; --x: 0cqw; --y: 0cqw; --r: 0deg; --ls: 0; }  
 

@@ -40,7 +40,7 @@ body { margin: 0; background: #000; font-family: Arial, sans-serif; }
 
 .locations {
   position: absolute; inset: 3.5% 3% auto 3%; z-index: 5; pointer-events: none;
-  display: grid; grid-template-columns: 1fr 1fr; row-gap: 22cqw;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .pair { display: flex; flex-direction: column; align-items: flex-start; }
 .pair:nth-child(even) { align-items: flex-end; margin-top: 4cqw; }
